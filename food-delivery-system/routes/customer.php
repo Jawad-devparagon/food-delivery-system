@@ -21,6 +21,7 @@ Route::middleware(['auth', 'verified', 'role:customer'])->group(function () {
 
     Route::get('checkout/{order}/pay', [PaymentController::class, 'show'])->name('checkout.pay');
     Route::post('checkout/{order}/confirm', [PaymentController::class, 'confirm'])->name('checkout.confirm');
+    Route::post('checkout/{order}/fail', [PaymentController::class, 'fail'])->name('checkout.fail');
 
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');

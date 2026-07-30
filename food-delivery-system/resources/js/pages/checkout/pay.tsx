@@ -37,6 +37,10 @@ function PayForm({ order }: { order: PageProps['order'] }) {
         router.visit(response.redirect);
     }
 
+    async function failOnServer() {
+        await http.post(checkout.fail(order.id).url);
+    }
+
     // Handle the case where Stripe redirected the customer back here after
     // an off-site payment method (e.g. a bank redirect) completed.
     useEffect(() => {
@@ -85,6 +89,10 @@ function PayForm({ order }: { order: PageProps['order'] }) {
                 error.message ?? 'Payment failed. Please try again.',
             );
             setSubmitting(false);
+
+            if (error.type === 'card_error' || error.type === 'validation_error') {
+                await failOnServer();
+            }
 
             return;
         }

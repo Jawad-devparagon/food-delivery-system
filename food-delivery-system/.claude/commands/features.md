@@ -1,4 +1,4 @@
-# API Feature Generator
+# Feature Generator
 
 The feature name is: {{args}}
 
@@ -10,6 +10,5 @@ Requirements:
 - Create Model
 - Create Form Request
 - Create Controller
-- Create Pest Feature Tests
 - Follow existing project conventions.
 - Return a checklist of generated files.
